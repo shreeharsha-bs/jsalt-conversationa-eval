@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JSALT Conversation Evaluation</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>JSALT Conversation Evaluation</h1>
+      <p>Listen to each clip and rate both conversation enjoyment and shared reality.</p>
+    </header>
+    <section id="setup" class="panel">
+      <label>Participant ID <input id="participantId" autocomplete="off" placeholder="e.g. team-3"></label>
+      <button id="startBtn" disabled>Loading clips...</button>
+    </section>
+    <section id="test" class="panel hidden">
+      <div class="progress"><span id="progressText"></span></div>
+      <h2 id="clipTitle"></h2>
+      <audio id="audio" controls preload="metadata"></audio>
+      <div class="ratings">
+        <label>Conversation enjoyment <span id="enjoymentValue">5</span>
+          <input id="enjoyment" type="range" min="1" max="9" step="1" value="5">
+        </label>
+        <label>Shared reality <span id="sharedValue">4</span>
+          <input id="shared" type="range" min="1" max="7" step="1" value="4">
+        </label>
+      </div>
+      <label>Optional comment
+        <textarea id="comment" rows="3" placeholder="What cues did you use?"></textarea>
+      </label>
+      <div class="actions">
+        <button id="nextBtn" disabled>Save and continue</button>
+      </div>
+    </section>
+    <section id="done" class="panel hidden">
+      <h2>Done</h2>
+      <p>Your responses have been saved locally. Submit them to the shared sheet if an endpoint is configured, and download a backup CSV.</p>
+      <button id="submitBtn">Submit results</button>
+      <button id="downloadBtn">Download backup CSV</button>
+      <pre id="status"></pre>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
