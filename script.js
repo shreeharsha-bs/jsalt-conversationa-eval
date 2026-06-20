@@ -1,4 +1,4 @@
-const ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbz91FMEdvsbhcTp8KFn0KijJYYJfyv8Rh7kU31jP1IfG3KhIOItoZ9Uaavc8N2dSE7G3Q/exec";
+const ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbxsVJhL7TISFibQinogezwO7LJRoiC8kv7vXNOHH1O3ryO-FdrfthrPMX_BIafy4NM4Jw/exec";
 let assignments = {};
 let order = [];
 let idx = 0;
