@@ -10,21 +10,45 @@
   <main>
     <header>
       <h1>JSALT Conversation Evaluation</h1>
-      <p>Listen to each clip and rate both conversation enjoyment and shared reality.</p>
+      <p>Listen to each conversation segment and rate both speakers.</p>
     </header>
+    <section id="instructions" class="panel">
+      <h2>Evaluation Guidelines</h2>
+      <p>Please evaluate the conversation based on the following dimensions.</p>
+      <h3>1. Enjoyment (Speaker A) (Scale: 1 to 9)</h3>
+      <p>How enjoyable did Speaker A seem to find the conversation?</p>
+      <ul><li><b>1:</b> Not at all</li><li><b>9:</b> Extremely</li></ul>
+      <h3>2. Enjoyment (Speaker B) (Scale: 1 to 9)</h3>
+      <p>How enjoyable did Speaker B seem to find the conversation?</p>
+      <ul><li><b>1:</b> Not at all</li><li><b>9:</b> Extremely</li></ul>
+      <h3>3. Shared Reality (Scale: 1 to 7)</h3>
+      <p>Evaluate the extent to which the speakers developed a joint perspective.</p>
+      <ul>
+        <li><b>1:</b> Strongly disagree ("They did not develop a joint perspective.")</li>
+        <li><b>7:</b> Strongly agree ("They developed a joint perspective.")</li>
+      </ul>
+    </section>
     <section id="setup" class="panel">
-      <label>Participant ID <input id="participantId" autocomplete="off" placeholder="e.g. team-3"></label>
+      <label>Participant ID <input id="participantId" autocomplete="off" placeholder="P001"></label>
       <button id="startBtn" disabled>Loading clips...</button>
+      <p id="setupStatus" class="status"></p>
     </section>
     <section id="test" class="panel hidden">
       <div class="progress"><span id="progressText"></span></div>
       <h2 id="clipTitle"></h2>
       <audio id="audio" controls preload="metadata"></audio>
+      <section id="transcriptPanel" class="transcript hidden">
+        <h3>Transcript</h3>
+        <pre id="transcript"></pre>
+      </section>
       <div class="ratings">
-        <label>Conversation enjoyment <span id="enjoymentValue">5</span>
-          <input id="enjoyment" type="range" min="1" max="9" step="1" value="5">
+        <label>Enjoyment (Speaker A) <span id="enjoymentAValue">5</span>
+          <input id="enjoymentA" type="range" min="1" max="9" step="1" value="5">
         </label>
-        <label>Shared reality <span id="sharedValue">4</span>
+        <label>Enjoyment (Speaker B) <span id="enjoymentBValue">5</span>
+          <input id="enjoymentB" type="range" min="1" max="9" step="1" value="5">
+        </label>
+        <label>Shared Reality <span id="sharedValue">4</span>
           <input id="shared" type="range" min="1" max="7" step="1" value="4">
         </label>
       </div>
@@ -37,7 +61,7 @@
     </section>
     <section id="done" class="panel hidden">
       <h2>Done</h2>
-      <p>Your responses have been saved locally. Submit them to the shared sheet if an endpoint is configured, and download a backup CSV.</p>
+      <p>Your responses have been saved locally. Submit them to the shared sheet and download a backup CSV.</p>
       <button id="submitBtn">Submit results</button>
       <button id="downloadBtn">Download backup CSV</button>
       <pre id="status"></pre>
