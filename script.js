@@ -12,7 +12,7 @@ function csvEscape(v) {
 }
 
 function csvText() {
-  const fields = ["timestamp","participant_id","order_index","segment_id","clip_id","source_folder","segment_position","is_common","enjoyment_speaker_a","enjoyment_speaker_b","shared_reality","comment","duration_s"];
+  const fields = ["timestamp","participant_id","order_index","segment_id","clip_id","source_folder","segment_position","is_common","enjoyment_speaker_a","enjoyment_speaker_b","our_thoughts_synced_up_sr1","comment","duration_s"];
   return [fields.join(","), ...rows.map(r => fields.map(f => csvEscape(r[f])).join(","))].join("\n");
 }
 
@@ -93,7 +93,7 @@ $("nextBtn").addEventListener("click", () => {
     is_common: clip.is_common,
     enjoyment_speaker_a: $("enjoymentA").value,
     enjoyment_speaker_b: $("enjoymentB").value,
-    shared_reality: $("shared").value,
+    our_thoughts_synced_up_sr1: $("shared").value,
     comment: $("comment").value,
     duration_s: clip.duration_s
   });
