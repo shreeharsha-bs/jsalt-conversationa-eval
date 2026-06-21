@@ -34,13 +34,37 @@ function showClip() {
   $("comment").value = "";
 }
 
-async function submitRows() {
+function submitRows() {
   if (!ENDPOINT_URL) {
     $("status").textContent = "No endpoint configured. Download the backup CSV and send it to the instructor.";
     return;
   }
-  await fetch(ENDPOINT_URL, {method:"POST", mode:"no-cors", headers:{"Content-Type":"text/plain"}, body:JSON.stringify({rows})});
-  $("status").textContent = `Submitted ${rows.length} rows.`;
+  if (!rows.length) {
+    $("status").textContent = "No ratings to submit yet.";
+    return;
+  }
+  $("submitBtn").disabled = true;
+  $("status").textContent = `Submitting ${rows.length} rows...`;
+  const payload = JSON.stringify({rows});
+  try {
+    if (navigator.sendBeacon) {
+      const blob = new Blob([payload], {type:"text/plain;charset=UTF-8"});
+      if (navigator.sendBeacon(ENDPOINT_URL, blob)) {
+        $("status").textContent = `Submitted ${rows.length} rows. They should appear in the sheet within a few seconds.`;
+        return;
+      }
+    }
+  } catch (err) {
+    console.warn("sendBeacon failed, falling back to fetch", err);
+  }
+  fetch(ENDPOINT_URL, {method:"POST", mode:"no-cors", headers:{"Content-Type":"text/plain"}, body:payload})
+    .then(() => {
+      $("status").textContent = `Submitted ${rows.length} rows. They should appear in the sheet within a few seconds.`;
+    })
+    .catch((err) => {
+      $("submitBtn").disabled = false;
+      $("status").textContent = `Could not submit automatically: ${err.message}. Please download the backup CSV.`;
+    });
 }
 
 function downloadCsv() {
