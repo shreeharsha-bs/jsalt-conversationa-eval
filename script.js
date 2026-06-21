@@ -53,7 +53,7 @@ async function submitRows() {
       headers: {"Content-Type": "text/plain"},
       body: payload
     });
-    $("status").textContent = `Submitted ${rows.length} rows. If they do not appear in the sheet within 10 seconds, download the backup CSV.`;
+    $("status").textContent = `Submitted ${rows.length} rows.`;
   } catch (err) {
     $("submitBtn").disabled = false;
     $("status").textContent = `Could not submit automatically: ${err.message}. Please download the backup CSV.`;
