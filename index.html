@@ -12,7 +12,17 @@
       <h1>JSALT Conversation Evaluation</h1>
       <p>Listen to each conversation segment and rate both speakers.</p>
     </header>
-    <section id="instructions" class="panel">
+    <section id="consent" class="panel">
+      <h2>Consent</h2>
+      <p>This listening test is part of a JSALT tutorial on conversation evaluation. You will listen to short conversation clips and provide ratings about enjoyment and whether the speakers seemed in sync.</p>
+      <p>Your responses will be used for tutorial discussion and aggregate analysis. Please do not include personally identifying information in the optional comments. You may stop at any time.</p>
+      <label class="consent-check">
+        <input id="consentCheck" type="checkbox">
+        <span>I understand and agree to take part in this listening test.</span>
+      </label>
+      <button id="consentBtn" disabled>Continue</button>
+    </section>
+    <section id="instructions" class="panel hidden">
       <h2>Evaluation Guidelines</h2>
       <p>Please evaluate the conversation based on the following dimensions.</p>
       <h3>1. Enjoyment (Speaker A) (Scale: 1 to 9)</h3>
@@ -28,7 +38,7 @@
         <li><b>7:</b> Strongly agree ("Their thoughts synced up.")</li>
       </ul>
     </section>
-    <section id="setup" class="panel">
+    <section id="setup" class="panel hidden">
       <label>Participant ID <input id="participantId" autocomplete="off" placeholder="P001"></label>
       <button id="startBtn" disabled>Loading clips...</button>
       <p id="setupStatus" class="status"></p>

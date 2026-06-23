@@ -75,6 +75,15 @@ fetch("assignments.json").then(r => r.json()).then(data => {
   $("setupStatus").textContent = "Use your assigned participant ID, for example P001.";
 });
 
+$("consentCheck").addEventListener("change", e => {
+  $("consentBtn").disabled = !e.target.checked;
+});
+$("consentBtn").addEventListener("click", () => {
+  $("consent").classList.add("hidden");
+  $("instructions").classList.remove("hidden");
+  $("setup").classList.remove("hidden");
+  $("participantId").focus();
+});
 $("enjoymentA").addEventListener("input", e => $("enjoymentAValue").textContent = e.target.value);
 $("enjoymentB").addEventListener("input", e => $("enjoymentBValue").textContent = e.target.value);
 $("shared").addEventListener("input", e => $("sharedValue").textContent = e.target.value);
